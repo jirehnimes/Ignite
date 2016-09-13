@@ -1,0 +1,8 @@
+#menu ion-side-menu-content{
+	color: white;
+}
+
+#menu ion-nav-bar button.activated {
+	background-color: transparent;
+	color: black;
+}

@@ -1,0 +1,28 @@
+@media screen and (orientation:portrait) { 
+	#find #spacing {
+		margin-bottom: 5vh;
+	}	
+}
+
+@media screen and (orientation:landscape) { 
+	#find #spacing {
+		margin-bottom: 0;
+	}	
+}
+
+#find {
+	color: black;
+}
+
+#find .item-header {
+	padding: 5px;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+#find .avatar {
+	display: block;
+	margin: 0 auto;
+	width: 50%;
+	height: auto;
+}

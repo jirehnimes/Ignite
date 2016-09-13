@@ -1,0 +1,29 @@
+@media screen and (orientation:portrait) { 
+	#register #spacing {
+		margin-bottom: 10vh;
+	}
+}
+
+@media screen and (orientation:landscape) { 
+	#register > ion-content {
+		padding-left: 30vw;
+		padding-right: 30vw;
+	}
+
+	#register #spacing {
+		margin-bottom: 15vh;
+	}	
+}
+
+#register > ion-content {
+	margin-bottom: 50px;
+}
+
+#register .bar-header {
+	position: fixed !important;
+	top: 0 !important;
+}
+
+#register #title {
+	text-align: center;
+}

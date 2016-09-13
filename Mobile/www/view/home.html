@@ -1,0 +1,53 @@
+<ion-view id="home">
+    <ion-content overflow-scroll="true" padding="true" scroll="true">
+		
+    	<div id="row spacing"></div>
+
+    	<div class="row">
+    		<div class="col">
+				<label class="item item-input">
+					<textarea type="text" placeholder="Enter status here." ng-model="input.text"></textarea>
+				</label>
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col">
+    			<button class="button button-full button-positive">
+					Add Pic
+				</button>
+    		</div>
+    		<div class="col">
+    			<button class="button button-full button-positive" ng-click="postFeed()">
+					Submit
+				</button>
+    		</div>
+    	</div>
+
+        <div class="row">
+            <div class="col">
+                <div class="list card" ng-repeat="feed in feeds">
+
+                    <!-- <div class="item item-avatar">
+                        <h2>Marty McFly</h2>
+                        <p>November 05, 1955</p>
+                    </div> -->
+
+                    <div class="item item-body">
+                        <p class="feedText">
+                            {{feed.text}}
+                        </p>
+                        <p>
+                            {{feed.like}} Like
+                        </p>
+                        <p>
+                            {{feed.created_at}}
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

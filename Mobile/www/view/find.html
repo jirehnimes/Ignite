@@ -1,0 +1,39 @@
+<ion-view id="find">
+    <ion-content overflow-scroll="false" padding="true" scroll="false">
+		
+        <div id="spacing"></div>
+    	
+        <td-cards>
+            <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe="cardSwiped($index)">
+                <div class="list card">
+
+                    <div class="item item-header">
+                        <div class="row">
+                            <div class="col col-75">
+                                <p>
+                                    {{card.name}}
+                                </p>
+                            </div>
+                            <div class="col col-25">
+                                <button class="button button-assertive"><i class="icon ion-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item item-body">
+                        <img class="full-image avatar" src="img/ionic.png">
+                    </div>
+
+                    <!-- <div class="item item-footer">
+                        <div class="button-bar">
+                            <a class="button button-balanced"><3</a>
+                            <a class="button button-assertive">X</a>
+                        </div>
+                    </div> -->
+
+                </div>
+            </td-card>
+        </td-cards>
+
+    </ion-content>
+</ion-view>

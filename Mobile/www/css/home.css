@@ -1,0 +1,12 @@
+#home .item {
+	padding: 0;
+}
+
+#home textarea {
+	height: 70px;
+	resize: none;
+	border: 1px solid;
+	border-color: black;
+	padding: 5px;
+	margin: 0 !important;
+}

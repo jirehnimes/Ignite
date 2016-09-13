@@ -1,0 +1,30 @@
+<ion-view id="index">
+    <ion-content overflow-scroll="true" padding="true" scroll="true">
+		
+    	<div id="spacing"></div>
+
+		<center>
+			<img src="./img/ionic.png" id="logo" alt="Logo">
+		</center>
+
+		<div class="list">
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Email</span>
+				<input type="text" placeholder="Email" ng-model="loginData.email">
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Password</span>
+				<input type="password" placeholder="Password" ng-model="loginData.password">
+			</label>
+		</div>
+		
+		<button class="button button-block button-calm" ng-click="doLogin()">
+			LOGIN
+		</button>
+		
+		<button class="button button-outline button-full button-calm" ng-click="goRegister()">
+			REGISTER
+		</button>
+
+    </ion-content>
+</ion-view>
