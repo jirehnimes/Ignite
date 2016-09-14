@@ -7,3 +7,10 @@
 .center {
 	text-align: center !important;
 }
+
+.spinner svg {
+	width: 80px;
+	height: 80px;
+	stroke: #0080ff !important;
+	fill: #0080ff !important;
+}

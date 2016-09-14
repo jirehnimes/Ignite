@@ -1,6 +1,5 @@
 <ion-view id="home">
     <ion-content overflow-scroll="true" padding="true" scroll="true">
-		
     	<div id="row spacing"></div>
 
     	<div class="row">
@@ -13,7 +12,7 @@
 
     	<div class="row">
     		<div class="col">
-    			<button class="button button-full button-positive">
+    			<button class="button button-full button-positive" ng-click="getImage()">
 					Add Pic
 				</button>
     		</div>
@@ -23,6 +22,12 @@
 				</button>
     		</div>
     	</div>
+
+        <div class="row spinner1" ng-hide="spinner1">
+            <div class="col center">
+                <ion-spinner icon="lines"></ion-spinner>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col">
@@ -49,5 +54,10 @@
             </div>
         </div>
 
+        <div class="row spinner2" ng-hide="spinner2">
+            <div class="col center">
+                <ion-spinner icon="lines"></ion-spinner>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
