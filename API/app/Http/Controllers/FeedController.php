@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
 
 use App\Http\Requests;
 
 use App\Feed;
+use App\User;
+
+use DB;
 
 class FeedController extends Controller
 {
@@ -18,7 +22,11 @@ class FeedController extends Controller
      */
     public function index()
     {
-        return Feed::all();
+        // $feeds = DB::table('feeds')->latest()->paginate(5);
+
+        $feeds = Feed::orderBy('created_at', 'desc')->paginate(5);
+
+        return response()->json($feeds);
     }
 
     /**

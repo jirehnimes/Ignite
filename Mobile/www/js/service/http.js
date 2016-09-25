@@ -64,10 +64,12 @@ angular.module('ignite.httpSrvc',[])
 
 	return{
 		get: function(sUrl) {
+			sUrl = sUrl.replace(_sServer, '');
 			return get(sUrl);
 		},
 
 		post: function(sUrl, oData) {
+			sUrl = sUrl.replace(_sServer, '');
 			return post(sUrl, oData);
 		}
 	}

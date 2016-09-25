@@ -16,6 +16,10 @@ angular.module('ignite.homeCtrl', [])
 
 	$scope.offset = 1;
 
+	$scope.isGetFeeds = true;
+
+	$scope.url = 'feed';
+
 	$scope.init = function() {
 		$scope.getFeeds();
 	}
@@ -23,13 +27,25 @@ angular.module('ignite.homeCtrl', [])
 	$scope.getFeeds = function() {
 		$scope.spinner2 = false;
 
-		Http.get('feed', $scope.input).then(
+		Http.get($scope.url, $scope.input).then(
 			function success(success) {
 				console.log(success);
-				$scope.spinner2 = true;
-				success.forEach(function(mValue, iIndex){
-					$scope.feeds.unshift(mValue);
+				var _aData = success.data;
+				var _sNextURL = success.next_page_url;
+
+				test = success;
+
+				_aData.forEach(function(mValue, iIndex){
+					$scope.feeds.push(mValue);
 				});
+
+				$scope.spinner2 = true;
+
+				if (_sNextURL === null) {
+					$scope.isGetFeeds = false;
+					console.error('No more data.');
+				}
+				$scope.url = _sNextURL;
 			}
 		);
 	}
@@ -72,7 +88,9 @@ angular.module('ignite.homeCtrl', [])
 		var _oThat = $(this);
 
 		if(this.scrollTop + _oThat.height() === this.scrollHeight - 1) {
-	   		$scope.getFeeds();
+	   		if ($scope.isGetFeeds === true) {
+	   			$scope.getFeeds();
+	   		}
 		}
 	});
 
