@@ -1,6 +1,6 @@
 angular.module('ignite.indexCtrl', [])
 
-.controller('IndexCtrl', function($scope, $state, Http) {
+.controller('IndexCtrl', function($scope, $state, $sce, Http) {
 
 	$scope.loginData = {
 		email: '',

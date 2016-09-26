@@ -13,7 +13,10 @@ angular.module('ignite', [
   'ionic-material',
   'ngCordova',
   'ionic.contrib.ui.tinderCards',
-  
+  "com.2fdevs.videogular",
+  "com.2fdevs.videogular.plugins.controls",
+  "com.2fdevs.videogular.plugins.buffering",
+
   // route
   'ignite.routes',
 
