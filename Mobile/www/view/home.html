@@ -33,15 +33,20 @@
             <div class="col">
                 <div class="list card" ng-repeat="feed in feeds">
 
+                    <!-- <div class="item item-avatar">
+                        <h2>Marty McFly</h2>
+                        <p>November 05, 1955</p>
+                    </div> -->
+
                     <div class="item item-body">
-                        <p>
-                            {{feed.created_at}}
-                        </p>
-                        <p>
+                        <p class="feedText">
                             {{feed.text}}
                         </p>
                         <p>
                             {{feed.like}} Like
+                        </p>
+                        <p>
+                            {{feed.created_at}}
                         </p>
                     </div>
 
