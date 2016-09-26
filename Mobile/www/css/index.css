@@ -1,10 +1,10 @@
-@media screen and (orientation:portrait) { 
+@media screen and (orientation:portrait) {
 	#index #spacing {
 		margin-bottom: 7vh;
-	}	
+	}
 }
 
-@media screen and (orientation:landscape) { 
+@media screen and (orientation:landscape) {
 	#index > ion-content {
 		padding-left: 30vw;
 		padding-right: 30vw;
@@ -12,7 +12,7 @@
 
 	#index #spacing {
 		margin-bottom: 0;
-	}	
+	}
 }
 
 #index #logo {

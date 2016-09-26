@@ -21,5 +21,18 @@ angular.module('ignite.indexCtrl', [])
 		$state.go('menu.find');
 	}
 
+	$scope.resources = [
+        'img/For_Wes/WEBM/For_Wes.webm',
+        '*.ogv',
+        '*.mp4',
+        '*.swf'
+    ];
+    $scope.poster = 'img/For_Wes/Snapshots/For_Wes.jpg';
+    $scope.fullScreen = true;
+    $scope.muted = true;
+    $scope.zIndex = '-100';
+    $scope.playInfo = {};
+    $scope.pausePlay = true;
+
 });
 

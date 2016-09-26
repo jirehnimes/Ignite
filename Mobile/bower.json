@@ -12,6 +12,8 @@
     "ngCordova": "^0.1.27-alpha",
     "robotodraft": "^1.1.0",
     "jquery": "^3.1.0",
-    "ionic-ion-tinder-cards": "ionic-contrib-tinder-cards#*"
+    "ionic-ion-tinder-cards": "ionic-contrib-tinder-cards#*",
+    "angular-vidbg": "angular-video-background#^0.0.12",
+    "lodash": "^4.16.2"
   }
 }
