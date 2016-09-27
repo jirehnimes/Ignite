@@ -17,3 +17,11 @@ Route::get('/', function () {
 
 Route::get('/feed', 'FeedController@index');
 Route::post('/feed', 'FeedController@store');
+
+Route::group(['prefix' => 'api'], function () {
+    Route::post('login', 'UserController@index');
+    Route::post('register', 'UserController@store');
+    Route::get('find', 'UserController@find');
+});
+
+Route::auth();

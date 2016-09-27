@@ -9,6 +9,8 @@ use App\Http\Requests;
 
 use App\Feed;
 
+use DB;
+
 class FeedController extends Controller
 {
     /**
@@ -18,7 +20,8 @@ class FeedController extends Controller
      */
     public function index()
     {
-        return Feed::all();
+        $feeds = Feed::orderBy('created_at', 'desc')->paginate(5);
+        return response()->json($feeds);
     }
 
     /**

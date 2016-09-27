@@ -3,7 +3,8 @@ angular.module('ignite.httpSrvc',[])
 .factory("Http", function($q, $http) {
 
 	// IP Address of the server
-	var _sServer = 'http://192.168.0.34:8080/';
+	// var _sServer = 'http://192.168.0.34:8080/';
+	var _sServer = 'http://ignite.com.local:8080/';
 
 	// Additional options for the request
 	var _oOptions = {
@@ -64,10 +65,12 @@ angular.module('ignite.httpSrvc',[])
 
 	return{
 		get: function(sUrl) {
+			sUrl = sUrl.replace(_sServer, '');
 			return get(sUrl);
 		},
 
 		post: function(sUrl, oData) {
+			sUrl = sUrl.replace(_sServer, '');
 			return post(sUrl, oData);
 		}
 	}

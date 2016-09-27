@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
+
+use App\User;
 
 class UserController extends Controller
 {
@@ -15,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -36,7 +41,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request);
     }
 
     /**
@@ -82,5 +87,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * To find other user possible for connection.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function find(Request $request) {
+        return response()->json(User::all());
     }
 }

@@ -11,7 +11,7 @@ angular.module('ignite.indexCtrl', [])
 	 * Go to register page
 	 */
 	$scope.goRegister = function() {
-		// $state.go('register');
+		$state.go('register');
 	}
 
 	/**

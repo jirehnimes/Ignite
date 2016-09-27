@@ -1,13 +1,24 @@
 angular.module('ignite.findCtrl', [])
 
-.controller('FindCtrl', function($scope, $state) {
-	
+.controller('FindCtrl', function($scope, $state, Http) {
+
 	var _mCard = $('#find .card');
 
-	$scope.cards = [
-	  	{ name: 'Foo Bar 1' },
-	  	{ name: 'Foo Bar 2' }
-	];
+	$scope.cards = [];
+
+	$scope.url = 'api/find';
+
+	$scope.init = function() {
+		$scope.getUsers();
+	}
+
+	$scope.getUsers = function() {
+		Http.get($scope.url, $scope.input).then(
+			function success(success) {
+				$scope.cards = success;
+			}
+		);
+	}
 
 	$scope.cardDestroyed = function(index) {
 	  	$scope.cards.splice(index, 1);
@@ -17,6 +28,16 @@ angular.module('ignite.findCtrl', [])
 	  	// var newCard = { name: 'p3' };
 	  	// $scope.cards.push(newCard);
 	};
+
+	$scope.cardLeft = function(index) {
+		console.log('Reject ' + index);
+	};
+
+	$scope.cardRight = function(index) {
+		console.log('Accept ' + index);
+	};
+
+	$scope.init();
 
 });
 
