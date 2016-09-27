@@ -13,7 +13,6 @@ angular.module('ignite', [
   'ionic-material',
   'ngCordova',
   'ionic.contrib.ui.tinderCards',
-  'ngVidBg',
 
   // route
   'ignite.routes',

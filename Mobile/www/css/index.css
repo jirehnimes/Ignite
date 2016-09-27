@@ -3,7 +3,7 @@
 		margin-bottom: 7vh;
 	}
 }
-
+/*
 @media screen and (orientation:landscape) {
 	#index > ion-content {
 		padding-left: 30vw;
@@ -14,7 +14,7 @@
 		margin-bottom: 0;
 	}
 }
-
+*/
 #index #logo {
 	height: 150px;
 	width: auto;
