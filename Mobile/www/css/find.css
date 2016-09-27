@@ -14,10 +14,23 @@
 	color: black;
 }
 
+#find td-cards td-card .list.card {
+	background-color: rgba(52,52,52,0.3);
+}
+
 #find .item-header {
 	padding: 5px;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
+}
+
+#find .item-body {
+	height: 100% !important;
+}
+
+#find .item-body .row {
+	height: 100%;
+	background-color: transparent;
 }
 
 #find .avatar {
@@ -25,4 +38,11 @@
 	margin: 0 auto;
 	width: 50%;
 	height: auto;
+}
+
+#find .swipe {
+	font-size: 3em;
+	background-color: rgba(255,255,255,0.5);
+	width: 100%;
+	height: 100%;
 }

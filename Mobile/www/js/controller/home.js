@@ -46,6 +46,7 @@ angular.module('ignite.homeCtrl', [])
 					console.error('No more data.');
 				}
 				$scope.url = _sNextURL;
+				console.log($scope.feeds);
 			}
 		);
 	}
@@ -63,26 +64,24 @@ angular.module('ignite.homeCtrl', [])
 		);
 	}
 
-	$scope.getImage = function() {
-		if (window.cordova) {
-			var options = {
-				destinationType: Camera.DestinationType.FILE_URI,
-				sourceType: Camera.PictureSourceType.CAMERA,
-			};
+	// $scope.getImage = function() {
+	// 	if (window.cordova) {
+	// 		var options = {
+	// 			destinationType: Camera.DestinationType.FILE_URI,
+	// 			sourceType: Camera.PictureSourceType.CAMERA,
+	// 		};
 
-			$cordovaCamera.getPicture(options).then(function(imageURI) {
-				var image = document.getElementById('myImage');
-				image.src = imageURI;
-			}, function(err) {
-			// error
-			});
-		} else {
-			console.error('No camera');
-		}
+	// 		$cordovaCamera.getPicture(options).then(function(imageURI) {
+	// 			var image = document.getElementById('myImage');
+	// 			image.src = imageURI;
+	// 		}, function(err) {
+	// 		// error
+	// 		});
+	// 	} else {
+	// 		console.error('No camera');
+	// 	}
 
-	}
-
-	$scope.init();
+	// }
 
 	_ionContent.scroll(function() {
 		var _oThat = $(this);
@@ -93,5 +92,8 @@ angular.module('ignite.homeCtrl', [])
 	   		}
 		}
 	});
+
+	$scope.init();
+	
 });
 

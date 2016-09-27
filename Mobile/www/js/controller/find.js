@@ -8,6 +8,8 @@ angular.module('ignite.findCtrl', [])
 
 	$scope.url = 'api/find';
 
+	$scope.userId = 1;
+
 	$scope.init = function() {
 		$scope.getUsers();
 	}
@@ -24,17 +26,40 @@ angular.module('ignite.findCtrl', [])
 	  	$scope.cards.splice(index, 1);
 	};
 
-	$scope.cardSwiped = function(index) {
-	  	// var newCard = { name: 'p3' };
-	  	// $scope.cards.push(newCard);
-	};
-
 	$scope.cardLeft = function(index) {
-		console.log('Reject ' + index);
+		console.log('Reject');
+
+		var _oUserData = $scope.cards[index];
+
+		_oData = {
+			user_id: 1,
+			for_user_id: _oUserData.id,
+			status: 0
+		};
+
+		Http.post($scope.url, _oData).then(
+			function success(success) {
+				console.log(success);
+			}
+		);
 	};
 
 	$scope.cardRight = function(index) {
-		console.log('Accept ' + index);
+		console.log('Accept');
+
+		var _oUserData = $scope.cards[index];
+
+		_oData = {
+			user_id: 1,
+			for_user_id: _oUserData.id,
+			status: 1
+		};
+
+		Http.post($scope.url, _oData).then(
+			function success(success) {
+				console.log(success);
+			}
+		);
 	};
 
 	$scope.init();

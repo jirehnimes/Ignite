@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 
-use App\Feed;
+use App\Relationship;
 
-use DB;
-
-class FeedController extends Controller
+class RelationshipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +19,7 @@ class FeedController extends Controller
      */
     public function index()
     {
-        $feeds = Feed::orderBy('created_at', 'desc')->paginate(5);
-        return response()->json($feeds);
+        //
     }
 
     /**
@@ -31,7 +29,7 @@ class FeedController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -42,15 +40,35 @@ class FeedController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $oFeed = new Feed;
+        $oInput = $request->all();
+        $oRelationship = new Relationship;
 
-        $oFeed->user_id = 1;
-        $oFeed->text = $input['text'];
-        if($oFeed->save()) {
-            return Feed::where('id', $oFeed->id)->first();
+        $aCondition = array(
+            array(
+                'user_id',
+                '=',
+                $oInput['user_id']
+            ),
+            array(
+                'for_user_id',
+                '=',
+                $oInput['for_user_id']
+            )
+        );
+
+        $aExist = Relationship::where($aCondition)->get();
+        if (count($aExist) === 0) {
+            return false;
         }
+    
 
+        $oRelationship->user_id = $oInput['user_id'];
+        $oRelationship->for_user_id = $oInput['for_user_id'];
+        $oRelationship->status = $oInput['status'];
+
+        if($oRelationship->save()) {
+            return response()->json($oInput['status']);
+        }
         return false;
     }
 
@@ -62,7 +80,7 @@ class FeedController extends Controller
      */
     public function show($id)
     {
-        return $id;
+        //
     }
 
     /**

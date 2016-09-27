@@ -5,14 +5,14 @@
 }
 
 @media screen and (orientation:landscape) { 
-	#register > ion-content {
+	/*#register > ion-content {
 		padding-left: 30vw;
 		padding-right: 30vw;
 	}
 
 	#register #spacing {
 		margin-bottom: 15vh;
-	}	
+	}	*/
 }
 
 #register > ion-content {

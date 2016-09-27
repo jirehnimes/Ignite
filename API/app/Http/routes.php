@@ -16,12 +16,15 @@ Route::get('/', function () {
 });
 
 Route::get('/feed', 'FeedController@index');
+Route::get('/feed/{id}', 'FeedController@show');
 Route::post('/feed', 'FeedController@store');
 
 Route::group(['prefix' => 'api'], function () {
-    Route::post('login', 'UserController@index');
+    Route::post('login', 'UserController@login');
     Route::post('register', 'UserController@store');
+
     Route::get('find', 'UserController@find');
+    Route::post('find', 'RelationshipController@store');
 });
 
 Route::auth();

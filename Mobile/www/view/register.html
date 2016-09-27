@@ -13,27 +13,27 @@
 		<div class="list">
 			<label class="item item-input item-floating-label">
 				<span class="input-label">First Name</span>
-				<input type="text" placeholder="First Name">
+				<input type="text" placeholder="First Name" ng-model="registerData.first_name">
 			</label>
 			<label class="item item-input item-floating-label">
 				<span class="input-label">Last Name</span>
-				<input type="text" placeholder="Last Name">
+				<input type="text" placeholder="Last Name" ng-model="registerData.last_name">
 			</label>
 			<label class="item item-input item-floating-label">
 				<span class="input-label">Email</span>
-				<input type="text" placeholder="Email">
+				<input type="email" placeholder="Email" ng-model="registerData.email">
 			</label>
 			<label class="item item-input item-floating-label">
 				<span class="input-label">Password</span>
-				<input type="password" placeholder="Password">
+				<input type="password" placeholder="Password" ng-model="registerData.password">
 			</label>
 			<label class="item item-input item-floating-label">
 				<span class="input-label">Verify Password</span>
-				<input type="password" placeholder="Verify Password">
+				<input type="password" placeholder="Verify Password" ng-model="registerData.verify_password">
 			</label>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label">Birthdate</span>
-				<input type="date" placeholder="Birthdate">
+				<input type="date" placeholder="Birthdate" ng-model="registerData.birthdate">
 			</label>
 			<!-- <label class="item item-input item-floating-label">
 				<span class="input-label">City</span>
@@ -45,7 +45,7 @@
 			</label> -->
 			<label class="item item-input item-floating-label">
 				<span class="input-label">Gender</span>
-				<input type="text" placeholder="Gender">
+				<input type="text" placeholder="Gender" ng-model="registerData.gender">
 			</label>
 		</div>
 
