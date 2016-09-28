@@ -1,6 +1,6 @@
 angular.module('ignite.indexCtrl', [])
 
-.controller('IndexCtrl', function($scope, $state, Http) {
+.controller('IndexCtrl', function($scope, $state, Http, LocalStorage) {
 
 	$scope.loginData = {
 		email: '',
@@ -24,12 +24,18 @@ angular.module('ignite.indexCtrl', [])
 			function success(success) {
 				var _response = JSON.parse(success);
 				if (_response === 'success') {
+					LocalStorage.init();
 					return $state.go('menu.find');
 				}
 				alert('Login Failed!');
 			}
 		);
 	}
+
+
+	// db.transaction(function (tx) {  
+	//    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
+	// });
 
 });
 

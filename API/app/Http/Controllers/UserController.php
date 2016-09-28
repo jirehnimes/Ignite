@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 
 use App\User;
+use App\Relationship;
 
 class UserController extends Controller
 {
@@ -127,6 +128,8 @@ class UserController extends Controller
      */
     public function find(Request $request) 
     {
-        return response()->json(User::all());
+        $oUser = User::all();
+        $oRelationship = Relationship::all();
+        return response()->json($oUser);
     }
 }

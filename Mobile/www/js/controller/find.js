@@ -39,7 +39,13 @@ angular.module('ignite.findCtrl', [])
 
 		Http.post($scope.url, _oData).then(
 			function success(success) {
-				console.log(success);
+				var _sResponse = JSON.parse(success);
+				console.log(_sResponse);
+				if (_sResponse === false) {
+					alert('Relationship is already set.');
+				} else {
+					alert('Rejected');
+				}
 			}
 		);
 	};
@@ -57,7 +63,13 @@ angular.module('ignite.findCtrl', [])
 
 		Http.post($scope.url, _oData).then(
 			function success(success) {
-				console.log(success);
+				var _sResponse = JSON.parse(success);
+				console.log(_sResponse);
+				if (_sResponse === false) {
+					return alert('Relationship is already set.');
+				} else {
+					alert('Accepted');
+				}
 			}
 		);
 	};

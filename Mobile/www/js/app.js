@@ -26,6 +26,7 @@ angular.module('ignite', [
 
   // services
   'ignite.httpSrvc',
+  'ignite.localStorageSrvc',
 
   // directives
 

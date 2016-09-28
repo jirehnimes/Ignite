@@ -57,11 +57,10 @@ class RelationshipController extends Controller
         );
 
         $aExist = Relationship::where($aCondition)->get();
-        if (count($aExist) === 0) {
-            return false;
+        if (count($aExist) === 1) {
+            return response()->json(false);
         }
-    
-
+        
         $oRelationship->user_id = $oInput['user_id'];
         $oRelationship->for_user_id = $oInput['for_user_id'];
         $oRelationship->status = $oInput['status'];
@@ -69,7 +68,7 @@ class RelationshipController extends Controller
         if($oRelationship->save()) {
             return response()->json($oInput['status']);
         }
-        return false;
+        return response()->json(false);
     }
 
     /**
