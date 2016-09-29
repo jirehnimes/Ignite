@@ -1,6 +1,6 @@
 angular.module('ignite.menuCtrl', [])
 
-.controller('MenuCtrl', function($scope, $state, $window) {
+.controller('MenuCtrl', function($scope, $state, $window, LocalStorage) {
 
     var _oLeftMenu = $('#leftMenu');
     var _oRightMenu = $('#rightMenu');
@@ -21,6 +21,7 @@ angular.module('ignite.menuCtrl', [])
 	}
 
 	$scope.doLogout = function() {
+        LocalStorage.logout();
 		$state.go('index');
 	}
 

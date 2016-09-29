@@ -15,6 +15,30 @@
 	}	*/
 }
 
+#register {
+	background-color: #a2c0d6;
+	color: black;
+}
+
+#register h1,
+#register .item-input span {
+	font-family: 'Lobster-Regular';
+}
+
+#register h1 {
+	color: white;
+}
+
+#register .item-input {
+	background-color: rgba(255,255,255,0.7);
+	margin-bottom: 10px;
+}
+
+#register .item-input input {
+	font-family: 'Roboto-Regular';
+	background-color: transparent;
+}
+
 #register > ion-content {
 	margin-bottom: 50px;
 }
@@ -24,6 +48,7 @@
 	top: 0 !important;
 }
 
-#register #title {
-	text-align: center;
+#register .button {
+	font-family: 'Roboto-Regular';
+	font-size: 1.3em;
 }

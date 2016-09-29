@@ -24,9 +24,11 @@ angular.module('ignite.localStorageSrvc',[])
 		_DB.transaction(function(tx) {
 			tx.executeSql('SELECT * FROM SESSION WHERE user_id=' + oUser.id, [], function(_tx, results) {
 				var _resLen = results.rows.length;
+				var _sQuery = '';
+
 				if (_resLen === 0) {
-					var _sQuery = 'INSERT INTO SESSION VALUES (' + oUser.id + ', ' +
-						'1, "' +
+					_sQuery = 'INSERT INTO SESSION VALUES (' + oUser.id + ', ' +
+						'"hello", "' +
 						oUser.first_name + '", "' +
 						oUser.last_name + '", "' +
 						oUser.email + '", "' +
@@ -35,15 +37,33 @@ angular.module('ignite.localStorageSrvc',[])
 						oUser.gender + '", "' +
 						oUser.photo +
 					'")';
-					_tx.executeSql(_sQuery);
+					
 				}
+
+				_sQuery = 'UPDATE SESSION SET is_login=1 WHERE user_id=' + oUser.id;
+
+				_tx.executeSql(_sQuery);
+
 				return true;
 			}, null);
 		});
 	}
 
 	function logout() {
+		_DB.transaction(function(tx) {
+			tx.executeSql('SELECT * FROM SESSION WHERE is_login=1', [], function(_tx, results) {
+				console.log(results);
+				var _oData = results.rows[0];
 
+				if (_oData) {
+					var _sQuery = 'UPDATE SESSION SET is_login=0 WHERE user_id=' + _oData.user_id;
+					_tx.executeSql(_sQuery);
+					console.log(_sQuery);
+					return true;
+				}
+				return false;
+			}, null);
+		});
 	}
 
 	return{
@@ -53,6 +73,10 @@ angular.module('ignite.localStorageSrvc',[])
 
 		login: function(oUser) {
 			return login(oUser);
+		},
+
+		logout: function() {
+			return logout();
 		}
 	}
 })
