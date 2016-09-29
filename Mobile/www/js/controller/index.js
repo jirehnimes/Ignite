@@ -22,20 +22,18 @@ angular.module('ignite.indexCtrl', [])
 		var _oData = $scope.loginData;
 		Http.post('api/login', _oData).then(
 			function success(success) {
-				var _response = JSON.parse(success);
-				if (_response === 'success') {
+				var _oData = success;
+				if ((typeof _oData) === 'object') {
+					console.log('Login success!');
 					LocalStorage.init();
+					LocalStorage.login(_oData);
 					return $state.go('menu.find');
 				}
+				console.log('Login Failed!');
 				alert('Login Failed!');
 			}
 		);
 	}
-
-
-	// db.transaction(function (tx) {  
-	//    tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, log)');
-	// });
 
 });
 

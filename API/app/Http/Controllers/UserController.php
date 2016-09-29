@@ -111,13 +111,13 @@ class UserController extends Controller
                 ->get();
 
         if (count($users) === 0) {
-            return json_encode('failed');
+            return response()->json('failed');
         }
 
         if(Hash::check($request->input('password'), $users[0]->password)){
-            return json_encode('success');
+            return response()->json($users[0]);
         }else{
-            return json_encode('failed');
+            return response()->json('failed');
         }
     }
 
@@ -126,7 +126,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function find(Request $request) 
+    public function find(Request $request)
     {
         $oUser = User::all();
         $oRelationship = Relationship::all();
