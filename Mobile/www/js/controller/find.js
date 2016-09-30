@@ -1,6 +1,11 @@
 angular.module('ignite.findCtrl', [])
 
-.controller('FindCtrl', function($scope, $state, Http) {
+.controller('FindCtrl', function($rootScope, $scope, $state, Http) {
+
+	$rootScope.$on('Test', function (event, data) {
+		console.log('Emitted!');
+        alert(data); // 'Emit!'
+    });
 
 	var _mCard = $('#find .card');
 

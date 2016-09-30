@@ -30,7 +30,7 @@ angular.module('ignite.registerCtrl', [])
 			console.log('Password not equal!');
 			return alert('Password not equal!');
 		}
-		
+
 		Http.post('api/register', _oData).then(
 			function success(success) {
 				console.log(success);

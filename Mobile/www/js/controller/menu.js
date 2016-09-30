@@ -1,6 +1,8 @@
 angular.module('ignite.menuCtrl', [])
 
-.controller('MenuCtrl', function($scope, $state, $window, LocalStorage) {
+.controller('MenuCtrl', function($rootScope, $scope, $state, $window, LocalStorage) {
+
+    $rootScope.$broadcast('Test', 'Emit!');
 
     var _oLeftMenu = $('#leftMenu');
     var _oRightMenu = $('#rightMenu');

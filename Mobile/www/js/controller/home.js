@@ -1,6 +1,6 @@
 angular.module('ignite.homeCtrl', [])
 
-.controller('HomeCtrl', function($scope, $state, Http, $cordovaCamera) {
+.controller('HomeCtrl', function($rootScope, $scope, $state, Http, $cordovaCamera) {
 
 	var _ionContent = $('#home ion-content');
 
@@ -94,6 +94,6 @@ angular.module('ignite.homeCtrl', [])
 	});
 
 	$scope.init();
-	
+
 });
 

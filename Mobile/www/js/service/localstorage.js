@@ -28,7 +28,7 @@ angular.module('ignite.localStorageSrvc',[])
 
 				if (_resLen === 0) {
 					_sQuery = 'INSERT INTO SESSION VALUES (' + oUser.id + ', ' +
-						'"hello", "' +
+						'1, "' +
 						oUser.first_name + '", "' +
 						oUser.last_name + '", "' +
 						oUser.email + '", "' +
@@ -37,10 +37,10 @@ angular.module('ignite.localStorageSrvc',[])
 						oUser.gender + '", "' +
 						oUser.photo +
 					'")';
-					
-				}
 
-				_sQuery = 'UPDATE SESSION SET is_login=1 WHERE user_id=' + oUser.id;
+				} else {
+					_sQuery = 'UPDATE SESSION SET is_login=1 WHERE user_id=' + oUser.id;
+				}
 
 				_tx.executeSql(_sQuery);
 

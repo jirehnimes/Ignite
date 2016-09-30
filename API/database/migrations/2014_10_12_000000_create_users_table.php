@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('birthdate');
             $table->string('gender');
-            $table->string('photo')->default('/img/ionic.png');
+            $table->string('photo')->default('img/ionic.png');
             $table->rememberToken();
             $table->timestamps();
         });
