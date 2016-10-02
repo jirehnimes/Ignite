@@ -27,6 +27,10 @@ angular.module('ignite.indexCtrl', [])
 					console.log('Login success!');
 					LocalStorage.init();
 					LocalStorage.login(_oData);
+
+					$scope.$emit('Test1', 'Emit!');
+					$scope.$broadcast('Test1', 'Broadcast!');
+					
 					return $state.go('menu.find');
 				}
 				console.log('Login Failed!');

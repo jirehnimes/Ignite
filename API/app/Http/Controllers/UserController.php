@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function index()
     {
-
+        // return Feed::with('user')->get();
     }
 
     /**
@@ -126,10 +126,26 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function find(Request $request)
+    public function find($id)
     {
-        $oUser = User::all();
-        $oRelationship = Relationship::all();
-        return response()->json($oUser);
+        // Initialize variable with blank array
+        $aUsersNotIncluded = array();
+
+        // Push to $aUsersNotIncluded the user id
+        array_push($aUsersNotIncluded, (int) $id);
+
+        // Select all users with pending or established relationship by user id
+        $oRelationship = Relationship::select('for_user_id')
+            ->where('user_id', '=', $id)
+            ->get();
+
+        // Push to $aUsersNotIncluded each other user id
+        foreach ($oRelationship as $iKey => $oValue) {
+            array_push($aUsersNotIncluded, $oValue['for_user_id']);
+        }
+
+        $oUsersIncluded = User::whereNotIn('id', $aUsersNotIncluded)->get();
+        
+        return response()->json($oUsersIncluded);
     }
 }

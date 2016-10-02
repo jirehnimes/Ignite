@@ -1,0 +1,48 @@
+<ion-view id="friends">
+    <ion-content overflow-scroll="true" padding="true" scroll="true">
+
+    	<div class="row">
+    		<div class="col">
+				PENDING
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col">
+			    <div class="list">
+					<div class="item item-button-right" ng-repeat="pending in pendings">
+						{{pending.user.first_name + ' ' + pending.user.last_name}}
+						<div class="buttons">
+							<button class="button button-positive" ng-click="reply({{friend}}, true)">
+								<i class="icon ion-checkmark"></i>
+							</button>
+							<button class="button button-assertive" ng-click="reply({{friend}}, false)">
+								<i class="icon ion-close"></i>
+							</button>
+						</div>
+					</div>
+				</div>	
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col">
+				FRIENDS
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col">
+				<div class="list">
+				    <div class="item item-button-right" ng-repeat="friend in friends">
+				    	{{friend.user.first_name + ' ' + friend.user.last_name}}
+				    	<button class="button button-calm">
+								<i class="icon ion-chatbox"></i>
+						</button>
+				    </div>
+				</div>	
+    		</div>
+    	</div>
+
+    </ion-content>
+</ion-view>

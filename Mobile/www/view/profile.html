@@ -1,0 +1,63 @@
+<ion-view id="profile">
+    <ion-content overflow-scroll="true" padding="true" scroll="true">
+
+    	<div class="row" id="avatar">
+    		<div class="col center">
+    			<img src="img/ionic.png" />
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col center">
+    			<h1>{{session.first_name + ' ' + session.last_name}}</h1>
+    		</div>
+    	</div>
+
+    	<hr>
+
+    	<div class="row">
+    		<div class="col center">
+    		<button class="button button-outline button-light" ng-click="uploadProfilePhoto()">
+				  	Upload Profile Photo
+				</button>
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col center">
+    		<button class="button button-outline button-light" ng-click="getProfilePhoto()">
+				  	Get Profile Photo
+				</button>
+    		</div>
+    	</div>
+
+    	<div class="row">
+    		<div class="col">
+    			
+    			<div class="list">
+					<label class="item item-input">
+						<span class="input-label">First name</span>
+						<input type="text" value="{{session.first_name}}">
+					</label>
+					<label class="item item-input">
+						<span class="input-label">Last name</span>
+						<input type="text" value="{{session.last_name}}">
+					</label>
+					<label class="item item-input">
+						<span class="input-label">Email</span>
+						<input type="email" value="{{session.email}}">
+					</label>
+					<label class="item item-input">
+						<span class="input-label">Birthdate</span>
+						<input type="date" value="{{session.birthdate}}">
+					</label>
+					<label class="item item-input">
+						<span class="input-label">Gender</span>
+						<input type="text" value="{{session.gender}}">
+					</label>
+				</div>
+    		</div>
+    	</div>
+
+    </ion-content>
+</ion-view>

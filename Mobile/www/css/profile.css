@@ -1,0 +1,11 @@
+#profile {
+	background-color: #a2c0d6;
+	color: black;
+}
+
+#profile #avatar .col img {
+	border: 10px white solid;
+	border-radius: 100% 100%;
+	height: 150px;
+	width: 150px;
+}

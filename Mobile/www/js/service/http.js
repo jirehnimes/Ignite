@@ -4,7 +4,8 @@ angular.module('ignite.httpSrvc',[])
 
 	// IP Address of the server
 	// var _sServer = 'http://192.168.0.34:8080/';
-	var _sServer = 'http://ignite.com.local:8080/';
+	var _sServer = 'http://172.20.10.7:8080/';
+	// var _sServer = 'http://ignite.com.local:8080/';
 
 	// Additional options for the request
 	var _oOptions = {

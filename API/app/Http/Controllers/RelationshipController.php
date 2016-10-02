@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests;
 
+use App\User;
 use App\Relationship;
 
 class RelationshipController extends Controller
@@ -19,7 +20,7 @@ class RelationshipController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -79,7 +80,7 @@ class RelationshipController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -90,7 +91,7 @@ class RelationshipController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -114,5 +115,63 @@ class RelationshipController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function showFriends($id)
+    {
+        $aCondition = array(
+            array(
+                'user_id',
+                '=',
+                $id
+            ),
+            array(
+                'status',
+                '=',
+                1
+            ),
+            array(
+                'reply',
+                '=',
+                1
+            )
+        );
+
+        $oRelationship = Relationship::where($aCondition)->get();
+
+        foreach ($oRelationship as $key => $value) {
+            $oRelationship[$key]['user'] = User::find($value['for_user_id']);
+        }
+
+        return response()->json($oRelationship);
+    }
+
+    public function showPendings($id)
+    {
+        $aCondition = array(
+            array(
+                'for_user_id',
+                '=',
+                $id
+            ),
+            array(
+                'status',
+                '=',
+                1
+            ),
+            array(
+                'reply',
+                '=',
+                0
+            )
+        );
+
+        $oRelationship = Relationship::where($aCondition)->get();
+
+        foreach ($oRelationship as $key => $value) {
+            $oRelationship[$key]['user'] = User::find($value['user_id']);
+        }
+
+        return response()->json($oRelationship);
     }
 }

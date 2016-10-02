@@ -1,6 +1,6 @@
 angular.module('ignite.localStorageSrvc',[])
 
-.factory("LocalStorage", function() {
+.factory("LocalStorage", function($q) {
 
 	var _DB = undefined;
 
@@ -66,6 +66,26 @@ angular.module('ignite.localStorageSrvc',[])
 		});
 	}
 
+	function session() {
+
+		// Initialize promise
+	    var _mDeferred = $q.defer();
+
+		init();
+		_DB.transaction(function(tx) {
+			tx.executeSql('SELECT * FROM SESSION WHERE is_login=1', [], function(_tx, results) {
+				if (results.rows.length === 1) {
+					var _oData = results.rows[0];
+					return _mDeferred.resolve(_oData);
+				}
+				_mDeferred.resolve(false);
+			}, null);
+		});
+
+		// Return stored promise
+	    return _mDeferred.promise;
+	}
+
 	return{
 		init: function() {
 			return init();
@@ -77,6 +97,10 @@ angular.module('ignite.localStorageSrvc',[])
 
 		logout: function() {
 			return logout();
+		},
+
+		session: function() {
+			return session();
 		}
 	}
 })

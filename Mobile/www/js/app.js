@@ -22,7 +22,9 @@ angular.module('ignite', [
   'ignite.registerCtrl',
   'ignite.menuCtrl',
   'ignite.homeCtrl',
+  'ignite.profileCtrl',
   'ignite.findCtrl',
+  'ignite.friendsCtrl',
 
   // services
   'ignite.httpSrvc',

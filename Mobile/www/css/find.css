@@ -1,48 +1,73 @@
 @media screen and (orientation:portrait) { 
-	#find #spacing {
+	/*#find #spacing {
 		margin-bottom: 5vh;
-	}	
+	}	*/
 }
 
 @media screen and (orientation:landscape) { 
-	#find #spacing {
+	/*#find #spacing {
 		margin-bottom: 0;
-	}	
+	}	*/
 }
 
 #find {
-	color: black;
+	background-color: rgb(52,52,52);
 }
 
-#find td-cards td-card .list.card {
-	background-color: rgba(52,52,52,0.3);
+#find ion-content {
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	height: 100%;
+  	width: 100%;
 }
 
-#find .item-header {
-	padding: 5px;
-	padding-top: 0 !important;
-	padding-bottom: 0 !important;
+#find td-cards {
+	position: relative;
+	width: 100%;
+	height: 50vh;
 }
 
-#find .item-body {
-	height: 100% !important;
-}
-
-#find .item-body .row {
+#find td-cards td-card {
+	position: absolute;
+	width: 100%;
 	height: 100%;
-	background-color: transparent;
 }
 
-#find .avatar {
-	display: block;
-	margin: 0 auto;
-	width: 50%;
+#find td-cards td-card .td-card,
+#find td-cards td-card .td-card .list.card,
+#find .list.card .item-body,
+#find .list.card .item-body .row,
+#find .list.card .item-body .row .col {
+	height: 100%;
+}
+
+#find td-cards td-card .td-card {
+	padding: 5px;
+}
+
+#find .list.card .item-header h3 {
+	font-family: 'Lobster-Regular' !important;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	color: white;
+}
+
+#find .list.card .item-body .avatar-container {
+	overflow: hidden;
+}
+
+#find .list.card .item-body .avatar {
+	width: 100%;
 	height: auto;
 }
 
-#find .swipe {
+#find .list.card .item-body .swipe {
+	display: flex;
+  	justify-content: center;
+  	align-items: center;
+}
+
+#find .list.card .item-body .swipe i {
 	font-size: 3em;
-	background-color: rgba(255,255,255,0.5);
-	width: 100%;
-	height: 100%;
 }

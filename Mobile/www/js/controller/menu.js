@@ -1,8 +1,12 @@
 angular.module('ignite.menuCtrl', [])
 
-.controller('MenuCtrl', function($rootScope, $scope, $state, $window, LocalStorage) {
+.controller('MenuCtrl', function($scope, $state, $window, LocalStorage) {
 
-    $rootScope.$broadcast('Test', 'Emit!');
+    $scope.$on('$ionicView.beforeEnter', function (e) {
+        $scope.$on('Session', function(e, data) {
+            $scope.session = data;
+        });
+    });
 
     var _oLeftMenu = $('#leftMenu');
     var _oRightMenu = $('#rightMenu');
@@ -16,11 +20,6 @@ angular.module('ignite.menuCtrl', [])
         _oLeftMenu.hide();
         _oRightMenu.show();
     }
-
-	$scope.goToFind = function() {
-		// $window.location.reload();
-		$state.go('menu.find');
-	}
 
 	$scope.doLogout = function() {
         LocalStorage.logout();

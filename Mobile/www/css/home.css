@@ -10,3 +10,20 @@
 	padding: 5px;
 	margin: 0 !important;
 }
+
+#home .list.card {
+	padding: 10px;
+}
+
+#home .list.card * {
+	font-family: 'Roboto-Regular';
+}
+
+#home .list.card .item-header .col-20 {
+	overflow: hidden;
+}
+
+#home .list.card .item-header img {
+	width: 100%;
+	height: auto;
+}

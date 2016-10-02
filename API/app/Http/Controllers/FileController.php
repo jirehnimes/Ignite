@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 use App\Http\Requests;
 
-use App\Feed;
+use App\User;
 
-use DB;
-
-class FeedController extends Controller
+class FileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,10 +17,7 @@ class FeedController extends Controller
      */
     public function index()
     {
-        $feeds = Feed::with('user')
-            ->orderBy('created_at', 'desc')
-            ->paginate(5);
-        return response()->json($feeds);
+        //
     }
 
     /**
@@ -33,7 +27,7 @@ class FeedController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -44,16 +38,7 @@ class FeedController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $oFeed = new Feed;
 
-        $oFeed->user_id = $input['user_id'];
-        $oFeed->text = $input['text'];
-        if($oFeed->save()) {
-            return Feed::with('user')->where('id', $oFeed->id)->first();
-        }
-
-        return false;
     }
 
     /**
@@ -64,18 +49,7 @@ class FeedController extends Controller
      */
     public function show($id)
     {
-        $oFeed = Feed::with('user')
-            ->where('user_id', '=', $id)
-            ->orderBy('created_at', 'desc')
-            ->first();
-
-        $aFeed = (array) $oFeed;
-
-        if (count($aFeed) === 0) {
-            return response()->json(false);
-        }
-
-        return response()->json($oFeed);
+        //
     }
 
     /**
@@ -110,5 +84,46 @@ class FeedController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function uploadProfilePhoto(Request $request, $id) 
+    {
+        $sFileExt = $request->file->guessExtension();
+
+        $sDestinationPath = 'uploads/images/'.$id.'/';
+        $sImageName = 'profile_'.$id.'.'.$sFileExt;
+
+        if($request->file('file')->move($sDestinationPath, $sImageName)){
+            $oUser = User::find($id);
+            $oUser->photo = $sImageName;
+            if ($oUser->save()) {
+                return response()->json(true);
+            }
+            return response()->json(false);
+        };
+        return response()->json(false);
+    }
+
+    public function downloadProfilePhoto($id)
+    {
+        $oUser = User::find($id);
+        $sFile = public_path('/uploads/'.$id.'/'.$oUser->photo);
+
+        if(file_exists($sFile)){
+
+            return response()->json(true);
+        }
+
+        return response()->json(false);
+        // return response()->download($sFile);        
+
+        // $headers = array(
+
+        //    'Content-Type'=>'image/jpg'
+        // );
+
+        // return response()->file($sFile, $headers);
+
+        // return response()->download($sFile);
     }
 }

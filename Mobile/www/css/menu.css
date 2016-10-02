@@ -1,5 +1,11 @@
-#menu ion-side-menu-content{
+#menu ion-side-menu-content {
 	color: white;
+}
+
+#menu ion-side-menu-content .title {
+    font-family: 'Lobster-Regular';
+    color: white;
+    font-size: 1.3em;
 }
 
 #menu ion-nav-bar button.activated {

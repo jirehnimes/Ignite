@@ -31,18 +31,42 @@
 
         <div class="row">
             <div class="col">
-                <div class="list card" ng-repeat="feed in feeds">
+                <div class="list card" ng-repeat="feed in feeds track by feed.id">
+
+                    <div class="item item-header item-calm">
+                        <div class="row no-padding">
+                            <div class="col col-20">
+                                <img src="img/ionic.png">
+                            </div>
+                            <div class="col col-80">
+                                <h2>
+                                    {{feed.user.first_name + ' ' + feed.user.last_name}}
+                                </h2>
+                                {{feed.created_at}}
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="item item-body">
                         <p>
-                            {{feed.created_at}}
-                        </p>
-                        <p>
                             {{feed.text}}
                         </p>
-                        <p>
+
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                
+                            </div>
+                        </div>
+
+                        <!-- <p>
                             {{feed.like}} Like
-                        </p>
+                        </p> -->
                     </div>
 
                 </div>

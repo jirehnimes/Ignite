@@ -46,12 +46,36 @@ angular.module('ignite.routes', ['ui.router'])
 
 
 
+    .state('menu.profile', {
+      url: 'profile',
+      views: {
+        'menuContent': {
+          templateUrl: 'view/profile.html',
+          controller: 'ProfileCtrl'
+        }
+      }
+    })
+
+
+
     .state('menu.find', {
       url: 'find',
       views: {
         'menuContent': {
           templateUrl: 'view/find.html',
           controller: 'FindCtrl'
+        }
+      }
+    })
+
+
+
+    .state('menu.friends', {
+      url: 'friends',
+      views: {
+        'menuContent': {
+          templateUrl: 'view/friends.html',
+          controller: 'FriendsCtrl'
         }
       }
     })

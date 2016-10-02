@@ -1,15 +1,15 @@
 <ion-view id="find">
     <ion-content overflow-scroll="false" padding="true" scroll="false">
 
-        <div id="spacing"></div>
+        <!-- <div id="spacing"></div> -->
 
         <td-cards>
             <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardLeft($index)" on-swipe-right="cardRight($index)">
                 <div class="list card">
 
                     <div class="item item-header item-calm">
-                        <div class="row">
-                            <div class="col center">
+                        <div class="row no-padding">
+                            <div class="col center no-padding">
                                 <h3>
                                     {{card.first_name + ' ' + card.last_name}}
                                 </h3>
@@ -22,8 +22,10 @@
                             <div class="col col-10 center swipe">
                                 <i class="icon ion-chevron-left"></i>
                             </div>
-                            <div class="col col-80">
-                                <img class="full-image avatar" ng-src="{{card.photo}}">
+                            <div class="col col-80 avatar-container">
+                                <center>
+                                    <img class="full-image avatar" ng-src="{{card.photo}}">
+                                </center>
                             </div>
                             <div class="col col-10 center swipe">
                                 <i class="icon ion-chevron-right"></i>

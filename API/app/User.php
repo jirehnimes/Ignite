@@ -32,8 +32,4 @@ class User extends Authenticatable
     public function feeds() {
         return $this->hasMany('App\Feed', 'user_id', 'id');
     }
-
-    public function setFullNameAttribute() {
-        return $this->first_name . ' ' . $this->last_name;
-    }
 }
