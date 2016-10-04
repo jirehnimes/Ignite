@@ -1,8 +1,6 @@
 <ion-view id="find">
     <ion-content overflow-scroll="false" padding="true" scroll="false">
 
-        <!-- <div id="spacing"></div> -->
-
         <td-cards>
             <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardLeft($index)" on-swipe-right="cardRight($index)">
                 <div class="list card">
@@ -24,7 +22,7 @@
                             </div>
                             <div class="col col-80 avatar-container">
                                 <center>
-                                    <img class="full-image avatar" ng-src="{{card.photo}}">
+                                    <img class="full-image avatar" ng-src="{{server + 'uploads/images/' + card.id + '/' + card.photo}}" onerror="this.onerror=null; this.src='img/ionic.png';" >
                                 </center>
                             </div>
                             <div class="col col-10 center swipe">

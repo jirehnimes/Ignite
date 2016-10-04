@@ -11,6 +11,8 @@ angular.module('ignite.profileCtrl', [])
 				$scope.session = success;
 			}
 		);
+
+		$scope.server = Http.session();
 	});
 
 	$scope.uploadProfilePhoto = function() {
@@ -25,7 +27,7 @@ angular.module('ignite.profileCtrl', [])
 				$cordovaImagePicker.getPictures(options)
 					.then(function (results) {
 						var _image = results[0];
-						var _server = 'http://192.168.0.34:8080/api/file/profilephoto/' + $scope.session.user_id;
+						var _server = $scope.server + 'api/file/profilephoto/' + $scope.session.user_id;
 
 						var options = {
 						    fileKey: 'file'
@@ -51,10 +53,6 @@ angular.module('ignite.profileCtrl', [])
 				alert('Not ready');
 			}
 		}, false);
-	}
-
-	$scope.getProfilePhoto = function() {
-		
 	}
 
 });

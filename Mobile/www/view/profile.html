@@ -3,7 +3,7 @@
 
     	<div class="row" id="avatar">
     		<div class="col center">
-    			<img src="img/ionic.png" />
+    			<img ng-src="{{server + 'uploads/images/' + session.user_id + '/' + session.photo}}" onerror="this.onerror=null; this.src='img/ionic.png';" />
     		</div>
     	</div>
 
@@ -17,16 +17,8 @@
 
     	<div class="row">
     		<div class="col center">
-    		<button class="button button-outline button-light" ng-click="uploadProfilePhoto()">
-				  	Upload Profile Photo
-				</button>
-    		</div>
-    	</div>
-
-    	<div class="row">
-    		<div class="col center">
-    		<button class="button button-outline button-light" ng-click="getProfilePhoto()">
-				  	Get Profile Photo
+    		<button class="button button-balanced" ng-click="uploadProfilePhoto()">
+				  	<i class="icon ion-camera"></i> Upload Profile Photo
 				</button>
     		</div>
     	</div>

@@ -7,6 +7,8 @@ angular.module('ignite.findCtrl', [])
 	$scope.$on('$ionicView.beforeEnter', function (e) {
 		console.log('Find Before Enter');
 
+		$scope.server = Http.session();
+
 		LocalStorage.session().then(
 	        function(success) {
 	            if(success === false){
@@ -31,6 +33,7 @@ angular.module('ignite.findCtrl', [])
 	        $scope.getUsers = function() {
 				Http.get($scope.url + '/users/' + $scope.session.user_id).then(
 					function success(success) {
+						console.log(success);
 						$scope.cards = success;
 					}
 				);

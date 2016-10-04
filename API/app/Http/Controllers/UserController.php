@@ -14,6 +14,7 @@ use App\Http\Requests;
 
 use App\User;
 use App\Relationship;
+use App\Filter;
 
 class UserController extends Controller
 {
@@ -54,6 +55,10 @@ class UserController extends Controller
         $oUser->birthdate = $oInput['birthdate'];
         $oUser->gender = $oInput['gender'];
         if($oUser->save()){
+            $oFilter = new Filter;
+            $oFilter->user_id = $oUser->id;
+            $oFilter->save();
+            
             return response()->json('Success');
         }
         return response()->json('Failed');
@@ -106,6 +111,7 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        // To check if email exist
         $users = DB::table('users')
                 ->where('email', '=', $request->input('email'))
                 ->get();
@@ -144,7 +150,37 @@ class UserController extends Controller
             array_push($aUsersNotIncluded, $oValue['for_user_id']);
         }
 
-        $oUsersIncluded = User::whereNotIn('id', $aUsersNotIncluded)->get();
+        $aCondition = array(
+            array(
+                'for_user_id',
+                '=',
+                $id
+            ),
+            array(
+                'status',
+                '=',
+                1
+            ),
+            array(
+                'reply',
+                '=',
+                1
+            )
+        );
+
+        $oRelationship = Relationship::select('user_id')
+            ->where($aCondition)
+            ->get();
+
+        foreach ($oRelationship as $iKey => $oValue) {
+            if (!in_array($oValue['user_id'], $aUsersNotIncluded)) {
+                array_push($aUsersNotIncluded, $oValue['user_id']);
+            }
+        }
+
+        $oFilter = Filter::where('user_id', $id)->get();
+
+        $oUsersIncluded = User::where('gender', $oFilter[0]['gender'])->whereNotIn('id', $aUsersNotIncluded)->get();
         
         return response()->json($oUsersIncluded);
     }

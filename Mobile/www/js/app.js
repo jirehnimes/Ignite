@@ -25,6 +25,8 @@ angular.module('ignite', [
   'ignite.profileCtrl',
   'ignite.findCtrl',
   'ignite.friendsCtrl',
+  'ignite.chatCtrl',
+  'ignite.filterCtrl',
 
   // services
   'ignite.httpSrvc',
@@ -53,3 +55,15 @@ angular.module('ignite', [
     }
   });
 })
+
+.filter('range', function() {
+  return function(input, total) {
+    total = parseInt(total);
+
+    for (var i=0; i<total; i++) {
+      input.push(i);
+    }
+
+    return input;
+  };
+});

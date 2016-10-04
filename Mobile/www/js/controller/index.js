@@ -2,6 +2,16 @@ angular.module('ignite.indexCtrl', [])
 
 .controller('IndexCtrl', function($rootScope, $scope, $state, Http, LocalStorage) {
 
+	$scope.$on('$ionicView.beforeEnter', function (e) {
+		LocalStorage.session().then(
+	        function(success) {
+	            if(success !== false){
+	                return $state.go('menu.find');
+	            }
+	        }
+	    );
+    });
+
 	$scope.loginData = {
 		email: '',
 		password: ''
@@ -28,9 +38,6 @@ angular.module('ignite.indexCtrl', [])
 					LocalStorage.init();
 					LocalStorage.login(_oData);
 
-					$scope.$emit('Test1', 'Emit!');
-					$scope.$broadcast('Test1', 'Broadcast!');
-					
 					return $state.go('menu.find');
 				}
 				console.log('Login Failed!');

@@ -83,7 +83,7 @@ angular.module('ignite.homeCtrl', [])
 		console.log('Entered home');
 		
 		if ($scope.session === undefined) {
-			$state.go('menu.find');
+			$state.go('index');
 		}
 	});
 
@@ -102,7 +102,7 @@ angular.module('ignite.homeCtrl', [])
 
 		$scope.isGetFeeds = true;
 
- 		$scope.url = 'feed';
+ 		$scope.url = 'feed/initial/' + $scope.session['user_id'];
 
   		$scope.feeds = [];
 

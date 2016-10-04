@@ -39,7 +39,12 @@ angular.module('ignite.localStorageSrvc',[])
 					'")';
 
 				} else {
-					_sQuery = 'UPDATE SESSION SET is_login=1 WHERE user_id=' + oUser.id;
+					_sQuery = 'UPDATE SESSION SET is_login=1, first_name="' + oUser.first_name + 
+						'", last_name="' + oUser.last_name + 
+						'", birthdate="' + oUser.birthdate + 
+						'", gender="' + oUser.gender + 
+						'", photo="' + oUser.photo + 
+						'" WHERE user_id=' + oUser.id;
 				}
 
 				_tx.executeSql(_sQuery);

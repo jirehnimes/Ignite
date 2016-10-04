@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Requests;
 
-use App\User;
+use App\Filter;
 
-class FileController extends Controller
+class FilterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,7 +39,7 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -49,7 +50,8 @@ class FileController extends Controller
      */
     public function show($id)
     {
-        //
+        $oFilter = Filter::where('user_id', $id)->get();
+        return response()->json($oFilter);
     }
 
     /**
@@ -72,7 +74,12 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $oInput = $request->all();
+        
+        if (Filter::where('user_id', $id)->update(['gender' => $oInput['gender']])) {
+            return response()->json(true);
+        }
+        return response()->json(false);
     }
 
     /**
@@ -84,23 +91,5 @@ class FileController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function uploadProfilePhoto(Request $request, $id) 
-    {
-        $sFileExt = $request->file->guessExtension();
-
-        $sDestinationPath = 'uploads/images/'.$id.'/';
-        $sImageName = 'profile_'.$id.'.'.$sFileExt;
-
-        if($request->file('file')->move($sDestinationPath, $sImageName)){
-            $oUser = User::find($id);
-            $oUser->photo = $sImageName;
-            if ($oUser->save()) {
-                return response()->json(true);
-            }
-            return response()->json(false);
-        };
-        return response()->json(false);
     }
 }

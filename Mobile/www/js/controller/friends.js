@@ -6,7 +6,7 @@ angular.module('ignite.friendsCtrl', [])
 		console.log('Entered home');
 		
 		if ($scope.session === undefined) {
-			$state.go('menu.find');
+			$state.go('index');
 		}
 	});
 
@@ -19,28 +19,13 @@ angular.module('ignite.friendsCtrl', [])
 			);
 		}
 
-		$scope.getPendings = function() {
-			Http.get('api/find/pendings/' + $scope.session.user_id).then(
-				function success(success) {
-					console.log(success);
-					$scope.pendings = success;
-				}
-			);
-		}
-
 		$scope.getFriends();
-		$scope.getPendings();
-	});
 
-	$scope.reply = function(oUser, bReply) {
-		if (bReply === true) {
-			console.log(oUser);
-			console.log('Pending Accepted');
-		} else {
-			console.log(oUser);
-			console.log('Pending Declined');
+		$scope.goChat = function(oFriend) {
+			console.log(oFriend);
+			$state.go('menu.chat', {session: oFriend});
 		}
-	}
+	});
 
 });
 

@@ -1,0 +1,51 @@
+#chat * {
+	color: black !important;
+}
+
+#chat .row#contactinfo {
+	height: 50px;
+}
+
+#chat .row#chatcontent {
+	padding: 10px;
+	height: calc(100% - 165px);
+}
+
+#chat .row#chatcontent .message {
+	border-radius: 10px;
+	padding: 10px;
+	width: 50%;
+	background-color: #a2c0d6;
+	margin-bottom: 10px;
+}
+
+#chat .row#chatbox {
+	position: absolute;
+	bottom: 0;
+	background-color: #a2c0d6;
+	height: 120px;
+}
+
+#chat .row#chatcontent .col,
+#chat .row#chatbox .col,
+#chat .row#chatbox .col .item-input-inset,
+#chat .row#chatbox .col .item-input-inset label,
+#chat .row#chatbox .col .item-input-inset label textarea,
+#chat .row#chatbox .col .item-input-inset button {
+	height: 100%;
+}
+
+#chat .row#chatbox .col .item-input-inset {
+	border: 0;
+}
+
+#chat .row#chatbox label {
+	padding: 0;
+}
+
+#chat .row#chatbox textarea {
+	width: 100%;
+	resize: none;
+	padding: 5px;
+	margin: 0 !important;
+}

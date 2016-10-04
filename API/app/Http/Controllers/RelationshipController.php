@@ -62,6 +62,32 @@ class RelationshipController extends Controller
             return response()->json(false);
         }
         
+        $aCondition = array(
+            array(
+                'user_id',
+                '=',
+                $oInput['for_user_id']
+            ),
+            array(
+                'for_user_id',
+                '=',
+                $oInput['user_id']
+            ),
+            array(
+                'status',
+                '=',
+                1
+            )
+        );
+
+        $aRes = Relationship::where($aCondition)->get();
+        if (count($aRes) === 1) {
+            if(Relationship::where($aCondition)->update(['reply' => 1])) {
+                return response()->json($oInput['status']);
+            }
+            return response()->json(false);
+        }
+
         $oRelationship->user_id = $oInput['user_id'];
         $oRelationship->for_user_id = $oInput['for_user_id'];
         $oRelationship->status = $oInput['status'];
@@ -119,59 +145,50 @@ class RelationshipController extends Controller
 
     public function showFriends($id)
     {
-        $aCondition = array(
+        $aCondition1 = array(
             array(
                 'user_id',
-                '=',
                 $id
             ),
             array(
                 'status',
-                '=',
                 1
             ),
             array(
                 'reply',
-                '=',
                 1
             )
         );
 
-        $oRelationship = Relationship::where($aCondition)->get();
-
-        foreach ($oRelationship as $key => $value) {
-            $oRelationship[$key]['user'] = User::find($value['for_user_id']);
-        }
-
-        return response()->json($oRelationship);
-    }
-
-    public function showPendings($id)
-    {
-        $aCondition = array(
+        $aCondition2 = array(
             array(
                 'for_user_id',
-                '=',
                 $id
             ),
             array(
                 'status',
-                '=',
                 1
             ),
             array(
                 'reply',
-                '=',
-                0
+                1
             )
         );
 
-        $oRelationship = Relationship::where($aCondition)->get();
+        $oRelationship = Relationship::where($aCondition1)
+            ->orWhere($aCondition2)
+            ->get();
+
+        $aFriends = array();
 
         foreach ($oRelationship as $key => $value) {
-            $oRelationship[$key]['user'] = User::find($value['user_id']);
+            if ($value['user_id'] == $id) {
+                array_push($aFriends, User::find($value['for_user_id']));
+            } else if ($value['for_user_id'] == $id) {
+                array_push($aFriends, User::find($value['user_id']));
+            }
         }
 
-        return response()->json($oRelationship);
+        return response()->json($aFriends);
     }
 }

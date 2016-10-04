@@ -58,6 +58,18 @@ angular.module('ignite.routes', ['ui.router'])
 
 
 
+    .state('menu.filter', {
+      url: 'filter',
+      views: {
+        'menuContent': {
+          templateUrl: 'view/filter.html',
+          controller: 'FilterCtrl'
+        }
+      }
+    })
+
+
+
     .state('menu.find', {
       url: 'find',
       views: {
@@ -78,6 +90,22 @@ angular.module('ignite.routes', ['ui.router'])
           controller: 'FriendsCtrl'
         }
       }
+    })
+
+
+
+    .state('menu.chat', {
+      url: 'chat',
+      views: {
+        'menuContent': {
+          templateUrl: 'view/chat.html',
+          controller: 'ChatCtrl',
+        }
+      },
+      params: {
+          session: null
+      },
+      cache: false
     })
 
 

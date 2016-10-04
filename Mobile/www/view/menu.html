@@ -10,12 +10,6 @@
 			<ion-nav-title>
 				<h2 class="title">Ignite</h2>
 			</ion-nav-title>
-
-			<ion-nav-buttons side="right">
-				<button class="button button-calm" menu-toggle="right" ng-click="showRight()">
-					<i class="icon ion-paper-airplane"></i>
-				</button>
-			</ion-nav-buttons>
 		</ion-nav-bar>
 
 		<ion-nav-view name="menuContent"></ion-nav-view>
@@ -25,7 +19,7 @@
 		<ion-header-bar class="bar-stable bar-calm">
 			<div class="row center">
 				<div class="col">
-					<img src="img/ionic.png" alt="avatar" id="avatar" />
+					<img ng-src="{{server + 'uploads/images/' + session.user_id + '/' + session.photo}}" onerror="this.onerror=null; this.src='img/ionic.png';" id="avatar" />
 					<h3>{{session.first_name + ' ' + session.last_name}}</h3>
 				</div>
 			</div>
@@ -45,6 +39,12 @@
 					</div>
 				</ion-item>
 				<ion-item menu-close>
+					<div class="row" ui-sref="menu.filter">
+						<div class="col-10 center itemList"><i class="icon ion-toggle"></i></div>
+						<div class="col-80 itemList">&nbsp;&nbsp;Filter</div>
+					</div>
+				</ion-item>
+				<ion-item menu-close>
 					<div class="row" ui-sref="menu.find">
 						<div class="col-10 center itemList"><i class="icon ion-search"></i></div>
 						<div class="col-80 itemList">&nbsp;&nbsp;Find</div>
@@ -60,40 +60,6 @@
 					<div class="row">
 						<div class="col-10 center itemList"><i class="icon ion-arrow-return-left"></i></div>
 						<div class="col-80 itemList">&nbsp;&nbsp;Logout</div>
-					</div>
-				</ion-item>
-			</ion-list>
-		</ion-content>
-	</ion-side-menu>
-
-	<ion-side-menu side="right" id="rightMenu">
-		<ion-header-bar class="bar-stable bar-calm">
-			NOTIFICATIONS
-		</ion-header-bar>
-		<ion-content>
-			<ion-list>
-				<ion-item menu-close>
-					<div class="row no-padding">
-						<div class="col">
-							Month 00, 0000
-						</div>
-					</div>
-					<div class="row no-padding">
-						<div class="col">
-							Sample Notification.
-						</div>
-					</div>
-				</ion-item>
-				<ion-item menu-close>
-					<div class="row no-padding">
-						<div class="col">
-							Month 00, 0000
-						</div>
-					</div>
-					<div class="row no-padding">
-						<div class="col">
-							Sample Notification.
-						</div>
 					</div>
 				</ion-item>
 			</ion-list>

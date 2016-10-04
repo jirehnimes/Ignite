@@ -33,8 +33,7 @@ angular.module('ignite.registerCtrl', [])
 
 		Http.post('api/register', _oData).then(
 			function success(success) {
-				console.log(success);
-				alert(success);
+				$state.go('index');
 			}
 		);
 	}
