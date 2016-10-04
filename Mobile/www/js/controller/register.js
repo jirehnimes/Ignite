@@ -2,6 +2,7 @@ angular.module('ignite.registerCtrl', [])
 
 .controller('RegisterCtrl', function($scope, $state, Http) {
 
+	// Initial registration data
 	$scope.registerData = {
 		first_name: '',
 		last_name: '',

@@ -2,9 +2,14 @@ angular.module('ignite.indexCtrl', [])
 
 .controller('IndexCtrl', function($rootScope, $scope, $state, Http, LocalStorage) {
 
+	// Before entering the index page
 	$scope.$on('$ionicView.beforeEnter', function (e) {
+		
+		// Checking the user login session
 		LocalStorage.session().then(
 	        function(success) {
+
+	        	// If there is login session, go to first page
 	            if(success !== false){
 	                return $state.go('menu.find');
 	            }
@@ -12,6 +17,7 @@ angular.module('ignite.indexCtrl', [])
 	    );
     });
 
+	// Initial login data
 	$scope.loginData = {
 		email: '',
 		password: ''

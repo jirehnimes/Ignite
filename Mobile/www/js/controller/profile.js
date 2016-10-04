@@ -2,19 +2,28 @@ angular.module('ignite.profileCtrl', [])
 
 .controller('ProfileCtrl', function($scope, $state, $cordovaImagePicker, $cordovaFileTransfer, Http, LocalStorage) {
 
+	// Before entering the profile page
 	$scope.$on('$ionicView.beforeEnter', function (e) {
+		
+		// Checking the user login session
 		LocalStorage.session().then(
 			function(success) {
+				
+				// If fails, go back to login page
 				if(success === false){
 		 			$state.go('index');
 				}
+
+				// If success, save to variable
 				$scope.session = success;
 			}
 		);
 
+		// Get the server URL
 		$scope.server = Http.session();
 	});
 
+	// When upload button is clicked
 	$scope.uploadProfilePhoto = function() {
 		document.addEventListener('deviceready', function () {
 			if (window.imagePicker && window.FileTransfer) {

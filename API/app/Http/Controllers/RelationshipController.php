@@ -14,27 +14,7 @@ use App\Relationship;
 class RelationshipController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * For saving relationship data
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -83,7 +63,7 @@ class RelationshipController extends Controller
         $aRes = Relationship::where($aCondition)->get();
         if (count($aRes) === 1) {
             if(Relationship::where($aCondition)->update(['reply' => 1])) {
-                return response()->json($oInput['status']);
+                return response()->json(1);
             }
             return response()->json(false);
         }
@@ -99,52 +79,13 @@ class RelationshipController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Getting the data of user friends
+     * @param  integer $id current user id
+     * @return
      */
-    public function show($id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function showFriends($id)
     {
+        // Condition 1 for query
         $aCondition1 = array(
             array(
                 'user_id',
@@ -160,6 +101,7 @@ class RelationshipController extends Controller
             )
         );
 
+        // Condition 2 for query
         $aCondition2 = array(
             array(
                 'for_user_id',

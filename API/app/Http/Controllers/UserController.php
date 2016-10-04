@@ -19,34 +19,14 @@ use App\Filter;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // return Feed::with('user')->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * For register
+     * @param  Request $request data from mobile
+     * @return boolean
      */
     public function store(Request $request)
     {
         $oInput = $request->all();
+
         $oUser = new User;
         $oUser->first_name = $oInput['first_name'];
         $oUser->last_name = $oInput['last_name'];
@@ -54,61 +34,30 @@ class UserController extends Controller
         $oUser->password = Hash::make($oInput['password']);
         $oUser->birthdate = $oInput['birthdate'];
         $oUser->gender = $oInput['gender'];
+        
+        // Save user
         if($oUser->save()){
             $oFilter = new Filter;
             $oFilter->user_id = $oUser->id;
-            $oFilter->save();
+            // Stores opposite gender
+            if ($oInput['gender'] === 'Male') {
+                $oFilter->gender = 'Female';
+            }
             
-            return response()->json('Success');
+            // Save filter for user            
+            if ($oFilter->save()) {
+                return response()->json(true);
+            }    
+            return response()->json(false);
         }
-        return response()->json('Failed');
+        return response()->json(false);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * For login
+     * @param  Request $request data from mobile
+     * @return boolean
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function login(Request $request)
     {
         // To check if email exist
@@ -117,20 +66,21 @@ class UserController extends Controller
                 ->get();
 
         if (count($users) === 0) {
-            return response()->json('failed');
+            return response()->json(false);
         }
 
+        // Password verification from encrypted password
         if(Hash::check($request->input('password'), $users[0]->password)){
             return response()->json($users[0]);
         }else{
-            return response()->json('failed');
+            return response()->json(false);
         }
     }
 
     /**
-     * To find other user possible for connection.
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * To display list of user in cards
+     * @param  integer $id [description]
+     * @return array list of users
      */
     public function find($id)
     {
@@ -150,38 +100,41 @@ class UserController extends Controller
             array_push($aUsersNotIncluded, $oValue['for_user_id']);
         }
 
+        // Condition to be used for query
         $aCondition = array(
             array(
                 'for_user_id',
-                '=',
                 $id
             ),
             array(
                 'status',
-                '=',
                 1
             ),
             array(
                 'reply',
-                '=',
                 1
             )
         );
 
+        // Query for getting data in relationship table
         $oRelationship = Relationship::select('user_id')
             ->where($aCondition)
             ->get();
 
+        // Stores the user id results in the collector
         foreach ($oRelationship as $iKey => $oValue) {
             if (!in_array($oValue['user_id'], $aUsersNotIncluded)) {
                 array_push($aUsersNotIncluded, $oValue['user_id']);
             }
         }
 
+        // Get the filter data by user id
         $oFilter = Filter::where('user_id', $id)->get();
 
+        // Get filtered users with gender filter
         $oUsersIncluded = User::where('gender', $oFilter[0]['gender'])->whereNotIn('id', $aUsersNotIncluded)->get();
         
+        // Return JSON data
         return response()->json($oUsersIncluded);
     }
 }

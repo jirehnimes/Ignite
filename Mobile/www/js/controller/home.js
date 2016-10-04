@@ -1,8 +1,11 @@
 angular.module('ignite.homeCtrl', [])
 
 .controller('HomeCtrl', function($scope, $state, $interval, Http, LocalStorage) {
+	
+	// HTML element object
 	var _ionContent = $('#home ion-content');
 
+	// Called to get the feeds of user and its friends
 	$scope.getFeeds = function() {
 		$scope.spinner2 = false;
 
@@ -31,6 +34,7 @@ angular.module('ignite.homeCtrl', [])
 		);
 	}
 
+	// When post is submitted
 	$scope.postFeed = function() {
 		$scope.spinner1 = false;
 
@@ -44,9 +48,11 @@ angular.module('ignite.homeCtrl', [])
 		);
 	}
 
+	// Scroll detector
 	_ionContent.scroll(function() {
 		var _oThat = $(this);
 
+		// Checks if scroll reaches the bottom
 		if(this.scrollTop + _oThat.height() > this.scrollHeight - 5) {
 	   		if ($scope.isGetFeeds === true) {
 	   			$scope.getFeeds();
@@ -54,6 +60,7 @@ angular.module('ignite.homeCtrl', [])
 		}
 	});
 
+	// Triggers when called, get the latest feed per 1 second
 	$scope.startLoad = function() {
 		$scope.stopLoad();
 
@@ -74,48 +81,64 @@ angular.module('ignite.homeCtrl', [])
 		}, 1000);
 	}
 
+	// Stops the per second process
 	$scope.stopLoad = function() {
 		$interval.cancel($scope.load);
 		$scope.load = undefined;
 	}
 
+	// Before entering the home page
 	$scope.$on('$ionicView.beforeEnter', function (e) {
 		console.log('Entered home');
 		
+		// If login session is undefined go back to login page
 		if ($scope.session === undefined) {
 			$state.go('index');
 		}
 	});
 
+	// Home page is entered
  	$scope.$on('$ionicView.enter', function (e) {
 
+ 		// Initial feed data
 		$scope.input = {
 			text: '',
 			user_id: $scope.session['user_id']
 		};
 
+		// Loader image top
 		$scope.spinner1 = true;
 
+		// Loader image bottom
 		$scope.spinner2 = true;
 
 		$scope.offset = 1;
 
 		$scope.isGetFeeds = true;
 
+		// Initial URL
  		$scope.url = 'feed/initial/' + $scope.session['user_id'];
 
+ 		// Collection of all feed posts
   		$scope.feeds = [];
 
+  		// Collection of all feed Ids
 		$scope.feedIds = [];
 
+		// Variable to store the startLoad
 		$scope.load = undefined;
 
+		// Get all the initial feeds
 		$scope.getFeeds();
 
+		// Starts the real-time checker of latest feed
 		$scope.startLoad();
 	});
 
+ 	// Before leaving the home page
 	$scope.$on('$ionicView.beforeLeave', function (e) {
+
+		// Stops the real-time event saved in $scope.load
   		$scope.stopLoad();
 	});
 

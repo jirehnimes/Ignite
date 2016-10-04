@@ -35,9 +35,12 @@
 				<span class="input-label">Birthdate</span>
 				<input type="date" placeholder="Birthdate" ng-model="registerData.birthdate">
 			</label>
-			<label class="item item-input item-floating-label">
+			<label class="item item-input item-select">
 				<span class="input-label">Gender</span>
-				<input type="text" placeholder="Gender" ng-model="registerData.gender">
+				<select ng-model="registerData.gender">
+      				<option selected>Male</option>
+      				<option>Female</option>
+  				</select>
 			</label>
 		</div>
 
