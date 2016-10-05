@@ -42,7 +42,7 @@ angular.module('ignite.findCtrl', [])
 		// Triggers when $emit Session event is called
 		$scope.$on('Session', function(e, data) {
 	 		console.log('Trigger session');
-	        
+
 	 		// Save the login session in $scope.session
 	        $scope.session = data;
 
@@ -108,7 +108,7 @@ angular.module('ignite.findCtrl', [])
 						console.log(_sResponse);
 						if (_sResponse === false) {
 							return alert('Relationship is already set.');
-						} else if (_sResponse == 1) {
+						} else if (_sResponse == 3) {
 							alert('It\'s a match!');
 						} else {
 							alert('Accepted');
