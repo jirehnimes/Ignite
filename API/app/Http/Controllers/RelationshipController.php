@@ -41,7 +41,7 @@ class RelationshipController extends Controller
         if (count($aExist) === 1) {
             return response()->json(false);
         }
-        
+
         $aCondition = array(
             array(
                 'user_id',

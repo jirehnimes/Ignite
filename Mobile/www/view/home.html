@@ -12,7 +12,11 @@
 
     	<div class="row">
     		<!-- <div class="col">
+<<<<<<< HEAD
     			<button class="button button-full button-positive" ng-click="postImage()">
+=======
+    			<button class="button button-full button-positive" ng-click="getImage()">
+>>>>>>> 04691f962ab9054d561f0757531ce5b278c5ec6c
 					Add Pic
 				</button>
     		</div> -->
@@ -36,7 +40,7 @@
                     <div class="item item-header item-calm">
                         <div class="row no-padding">
                             <div class="col col-20">
-                                <img ng-src="{{server + 'uploads/images/' + feed.user_id + '/' + feed.photo}}" onerror="this.onerror=null; this.src='img/ionic.png';">
+                                <img ng-src="{{server + 'uploads/images/' + feed.user_id + '/' + feed.user.photo}}" onerror="this.onerror=null; this.src='img/ionic.png';">
                             </div>
                             <div class="col col-70">
                                 <h2>

@@ -1,7 +1,7 @@
 angular.module('ignite.homeCtrl', [])
 
 .controller('HomeCtrl', function($scope, $state, $interval, Http, LocalStorage) {
-	
+
 	// HTML element object
 	var _ionContent = $('#home ion-content');
 
@@ -111,7 +111,7 @@ angular.module('ignite.homeCtrl', [])
 	// Before entering the home page
 	$scope.$on('$ionicView.beforeEnter', function (e) {
 		console.log('Entered home');
-		
+
 		// If login session is undefined go back to login page
 		if ($scope.session === undefined) {
 			$state.go('index');

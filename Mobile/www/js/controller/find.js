@@ -42,7 +42,7 @@ angular.module('ignite.findCtrl', [])
 		// Triggers when $emit Session event is called
 		$scope.$on('Session', function(e, data) {
 	 		console.log('Trigger session');
-	        
+
 	 		// Save the login session in $scope.session
 	        $scope.session = data;
 
