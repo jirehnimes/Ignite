@@ -1,7 +1,7 @@
 <ion-view id="chat">
     <ion-content overflow-scroll="false" padding="false" scroll="false">
 
-        <div class="row bar-calm" id="contactinfo">
+        <div class="row" id="contactinfo">
             <div class="col">
                 <h3>{{friend.first_name + ' ' + friend.last_name}}</h3>
             </div>
@@ -9,7 +9,7 @@
 
         <div class="row" id="chatcontent">
             <div class="col">
-                <div class="message" ng-repeat="chat in chats" ng-style="{ 'margin-left': chat.user_1 == session.user_id ? '50%' : '' }">
+                <div class="message" ng-repeat="chat in chats" ng-style="chatStyle(chat)">
                     <p>{{chat.text}}</p>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     <label class="item-input-wrapper">
                         <textarea type="text" placeholder="Enter status here." ng-model="chatData.text"></textarea>
                     </label>
-                    <button class="button button-light" ng-click="submit()">
+                    <button class="button" ng-click="submit()">
                         Send
                     </button>
                 </div>

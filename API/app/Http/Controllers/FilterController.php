@@ -34,7 +34,13 @@ class FilterController extends Controller
     {
         $oInput = $request->all();
         
-        if (Filter::where('user_id', $id)->update(['gender' => $oInput['gender']])) {
+        $aData = array(
+            'gender' => $oInput['gender'],
+            'age_min' => $oInput['age_min'],
+            'age_max' => $oInput['age_max']
+        );
+
+        if (Filter::where('user_id', $id)->update($aData)) {
             return response()->json(true);
         }
         return response()->json(false);

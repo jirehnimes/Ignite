@@ -63,7 +63,7 @@ class RelationshipController extends Controller
         $aRes = Relationship::where($aCondition)->get();
         if (count($aRes) === 1) {
             if(Relationship::where($aCondition)->update(['reply' => 1])) {
-                return response()->json(1);
+                return response()->json(3);
             }
             return response()->json(false);
         }

@@ -134,6 +134,17 @@ class UserController extends Controller
         // Get filtered users with gender filter
         $oUsersIncluded = User::where('gender', $oFilter[0]['gender'])->whereNotIn('id', $aUsersNotIncluded)->get();
         
+        // Filtered users with age minimum and maximum
+        foreach ($oUsersIncluded as $iKey => $mValue) {
+            // Age per user
+            $_iAge = $mValue->getAge();
+
+            // Check if lower than minimum or greater than maximum
+            if ($_iAge < $oFilter[0]['age_min'] || $_iAge > $oFilter[0]['age_max']) {
+                unset($oUsersIncluded[$iKey]);
+            }
+        }
+
         // Return JSON data
         return response()->json($oUsersIncluded);
     }

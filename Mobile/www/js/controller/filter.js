@@ -13,12 +13,13 @@ angular.module('ignite.filterCtrl', [])
 
 	// Entered filter page
 	$scope.$on('$ionicView.enter', function (e) {
-		
+
 		// Gets the user's filter data
 		Http.get('api/filter/' + $scope.session.user_id).then(
 			function success(success) {
 				$scope.filter = success[0];
-				console.log($scope.filter);
+				$scope.filter.age_min = $scope.filter.age_min.toString();
+				$scope.filter.age_max = $scope.filter.age_max.toString();
 			}
 		);
 

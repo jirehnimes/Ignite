@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->date('birthdate');
             $table->string('gender');
             $table->string('photo')->nullable();
-            $table->string('photo_mime');
             $table->rememberToken();
             $table->timestamps();
         });

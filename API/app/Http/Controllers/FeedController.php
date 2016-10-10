@@ -178,4 +178,12 @@ class FeedController extends Controller
 
         return response()->json($oFeed);
     }
+
+    public function destroy($id, Request $request) 
+    {
+        if(Feed::destroy($id)) {
+            return response()->json(true);
+        }
+        return response()->json(false);
+    }
 }

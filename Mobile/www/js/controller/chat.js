@@ -66,6 +66,17 @@ angular.module('ignite.chatCtrl', [])
 			);
 		}
 
+		$scope.chatStyle = function(chat) {
+			var _oStyle = {};
+
+			if (chat.user_1 === $scope.session.user_id) {
+				_oStyle['margin-left'] = '50%';
+				_oStyle['background-color'] = '#a2c0d6';
+			}
+
+			return _oStyle;
+		}
+
 		// Executing the real-time checking of latest chat message
 		$scope.startLoad = function() {
 			$scope.stopLoad();

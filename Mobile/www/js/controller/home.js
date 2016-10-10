@@ -48,6 +48,27 @@ angular.module('ignite.homeCtrl', [])
 		);
 	}
 
+	// To delete feed
+	$scope.deleteFeed = function(feed) {
+		console.log('To delete');
+
+		var _id = $scope.feedIds.indexOf(feed.id);
+		$scope.feedIds.splice(_id, 1);
+
+		$scope.feeds.forEach(function(oValue, iIndex) {
+			if ($scope.feeds[iIndex].id === feed.id) {
+				$scope.feeds.splice(iIndex, 1);
+				return true;
+			}
+		});
+
+		Http.post('feed/delete/' + feed.id, {}).then(
+			function success(success) {
+				console.log(success);
+			}
+		);
+	}
+
 	// Scroll detector
 	_ionContent.scroll(function() {
 		var _oThat = $(this);
@@ -95,6 +116,8 @@ angular.module('ignite.homeCtrl', [])
 		if ($scope.session === undefined) {
 			$state.go('index');
 		}
+
+		$scope.server = Http.session();
 	});
 
 	// Home page is entered
@@ -132,7 +155,7 @@ angular.module('ignite.homeCtrl', [])
 		$scope.getFeeds();
 
 		// Starts the real-time checker of latest feed
-		$scope.startLoad();
+		// $scope.startLoad();
 	});
 
  	// Before leaving the home page

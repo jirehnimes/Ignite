@@ -1,25 +1,25 @@
 <ion-view id="filter">
     <ion-content overflow-scroll="false" padding="true" scroll="false">
 
-        <!-- <label class="item item-input item-select">
-            <div class="input-label">
-                Min. Age
-            </div>
-            <select>
-                <option ng-repeat="n in [] | range:100">{{n}}</option>
-            </select>
-        </label>
-
-        <label class="item item-input item-select">
-            <div class="input-label">
-                Max. Age
-            </div>
-            <select>
-                <option ng-repeat="n in [] | range:100">{{n}}</option>
-            </select>
-        </label> -->
-
         <div class="list">
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Min. Age
+                </div>
+                <select ng-model="filter.age_min">
+                    <option ng-repeat="n in [] | range:100">{{n}}</option>
+                </select>
+            </label>
+
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Max. Age
+                </div>
+                <select ng-model="filter.age_max">
+                    <option ng-repeat="n in [] | range:100">{{n}}</option>
+                </select>
+            </label>
 
             <label class="item item-input item-select">
                 <div class="input-label">

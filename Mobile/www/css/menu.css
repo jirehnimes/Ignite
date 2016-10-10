@@ -2,6 +2,14 @@
 	color: white;
 }
 
+#menu ion-side-menu-content .btnNav {
+    background-color: #a2c0d6;
+}
+
+#menu ion-side-menu-content .bar-header {
+    background-color: #97bdd8 !important;
+}
+
 #menu ion-side-menu-content .title {
     font-family: 'Lobster-Regular';
     color: white;
@@ -16,6 +24,7 @@
 #menu #leftMenu ion-header-bar {
     height: 200px;
     padding: 10px;
+    background-color: #97bdd8;
 }
 
 #menu #leftMenu ion-header-bar #avatar {

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Carbon\Carbon;
+
 class User extends Authenticatable
 {
     /**
@@ -31,5 +33,10 @@ class User extends Authenticatable
      */
     public function feeds() {
         return $this->hasMany('App\Feed', 'user_id', 'id');
+    }
+
+
+    public function getAge() {
+        return Carbon::parse($this->attributes['birthdate'])->age;
     }
 }

@@ -105,10 +105,11 @@ angular.module('ignite.findCtrl', [])
 				Http.post($scope.url, _oData).then(
 					function success(success) {
 						var _sResponse = JSON.parse(success);
+						console.log('POST result');
 						console.log(_sResponse);
 						if (_sResponse === false) {
 							return alert('Relationship is already set.');
-						} else if (_sResponse == 1) {
+						} else if (_sResponse == 3) {
 							alert('It\'s a match!');
 						} else {
 							alert('Accepted');

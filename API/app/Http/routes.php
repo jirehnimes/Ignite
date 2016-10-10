@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::get('/feed/initial/{id}', 'FeedController@index');
 Route::get('/feed/{id}', 'FeedController@show');
-
 Route::post('/feed', 'FeedController@store');
+Route::post('/feed/delete/{id}', 'FeedController@destroy');
 
 Route::group(['prefix' => 'api'], function () {
     Route::post('login', 'UserController@login');
